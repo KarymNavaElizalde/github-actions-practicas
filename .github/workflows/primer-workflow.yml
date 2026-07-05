@@ -1,16 +1,20 @@
-
-name: Mi primer Workflow
+name: Mi segundo Workflow
 
 on:
   push:
 
 jobs:
-  saludo:
+  explorando-maquina:
+
     runs-on: ubuntu-latest
 
-    steps: 
-      - name: Mostrar mensaje
-        run: echo "Hola desde Github Actions"
+    steps:
 
-      - name: Segundo mensaje 
-        run: echo "Mi primer workflow funciona"
+      - name: Mostrar carpeta actual
+        run: pwd
+
+      - name: Mostrar contenido de la carpeta
+        run: ls -la
+
+      - name: Intentar leer README
+        run: cat README.md
