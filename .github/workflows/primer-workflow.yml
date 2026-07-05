@@ -1,4 +1,4 @@
-name: Mi segundo Workflow
+name: Mi tercer Workflow
 
 on:
   push:
@@ -10,11 +10,14 @@ jobs:
 
     steps:
 
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
       - name: Mostrar carpeta actual
         run: pwd
 
-      - name: Mostrar contenido de la carpeta
+      - name: Mostrar archivos
         run: ls -la
 
-      - name: Intentar leer README
+      - name: Leer README
         run: cat README.md
