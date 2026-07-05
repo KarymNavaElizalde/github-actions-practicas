@@ -21,3 +21,17 @@ jobs:
 
       - name: Leer README
         run: cat README.md
+
+      - name: Mostrar contenido de .github
+        run: ls -la .github
+
+      - name: Mostrar contenido de workflows
+        run: ls -la .github/workflows
+
+      - name: Ver historial
+        run: git log --oneline
+
+      - name: Contar commits
+        run: git rev-list --count HEAD
+
+        
