@@ -1,37 +1,20 @@
-name: Mi tercer Workflow
+name: Mi cuarto Workflow
 
 on:
   push:
 
 jobs:
-  explorando-maquina:
+  experimento-error:
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Descargar el repositorio
-        uses: actions/checkout@v4
+      - name: Paso 1
+        run: echo "Iniciando workflow"
 
-      - name: Mostrar carpeta actual
-        run: pwd
+      - name: Paso 2
+        run: comando_que_no_existe
 
-      - name: Mostrar archivos
-        run: ls -la
-
-      - name: Leer README
-        run: cat README.md
-
-      - name: Mostrar contenido de .github
-        run: ls -la .github
-
-      - name: Mostrar contenido de workflows
-        run: ls -la .github/workflows
-
-      - name: Ver historial
-        run: git log --oneline
-
-      - name: Contar commits
-        run: git rev-list --count HEAD
-
-        
+      - name: Paso 3
+        run: echo "¿Llegué hasta aquí?"
