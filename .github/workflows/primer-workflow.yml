@@ -1,20 +1,40 @@
-name: Mi cuarto Workflow
+name: Practica Artifacts
 
 on:
   push:
 
 jobs:
-  experimento-error:
+
+  job-a:
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Paso 1
-        run: echo "Iniciando workflow"
+      - uses: actions/checkout@v4
 
-      - name: Paso 2
-        run: comando_que_no_existe
+      - name: Crear archivo
+        run: |
+          echo "Hola desde el Job A" > resultado.txt
+          echo "Este archivo viajará al Job B"
 
-      - name: Paso 3
-        run: echo "¿Llegué hasta aquí?"
+      - name: Subir Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mi-archivo
+          path: resultado.txt
+
+  job-b:
+
+    needs: job-a
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: mi-archivo
+
+      - name: Ver contenido
+        run: cat resultado.txt
