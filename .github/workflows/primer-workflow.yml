@@ -1,11 +1,11 @@
-name: Practica Artifacts
+name: Practica Contextos
 
 on:
   push:
 
 jobs:
 
-  job-a:
+  explorar-contextos:
 
     runs-on: ubuntu-latest
 
@@ -13,28 +13,29 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      - name: Crear archivo
-        run: |
-          echo "Hola desde el Job A" > resultado.txt
-          echo "Este archivo viajará al Job B"
+      - name: Actor
+        run: echo "${{ github.actor }}"
 
-      - name: Subir Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: mi-archivo
-          path: resultado.txt
+      - name: Repositorio
+        run: echo "${{ github.repository }}"
 
-  job-b:
+      - name: Rama
+        run: echo "${{ github.ref }}"
 
-    needs: job-a
+      - name: Commit
+        run: echo "${{ github.sha }}"
 
-    runs-on: ubuntu-latest
+      - name: Workflow
+        run: echo "${{ github.workflow }}"
 
-    steps:
+      - name: Job
+        run: echo "${{ github.job }}"
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: mi-archivo
+      - name: Run ID
+        run: echo "${{ github.run_id }}"
 
-      - name: Ver contenido
-        run: cat resultado.txt
+      - name: Run Number
+        run: echo "${{ github.run_number }}"
+
+      - name: Sistema Operativo
+        run: echo "${{ runner.os }}"
