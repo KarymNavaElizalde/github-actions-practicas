@@ -18,10 +18,10 @@ jobs:
     steps:
 
       - name: Variable del Workflow
-        run: echo "Empresa: ${{EMPRESA}}"
+        run: 'echo "Empresa: $EMPRESA"'
 
       - name: Variable del Job
-        run: echo "Lenguaje: $LENGUAJE"
+        run: 'echo "Lenguaje: $LENGUAJE"'
 
       - name: Variable del Step
         env:
@@ -30,7 +30,7 @@ jobs:
         run: echo "$MENSAJE"
 
       - name: Contexto GitHub
-        run: echo "Actor: ${{ github.actor }}"
+        run: 'echo "Actor: ${{ github.actor }}"'
 
       - name: Mezclando Contexto y Variables
         env:
