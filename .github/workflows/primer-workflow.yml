@@ -1,41 +1,39 @@
-name: Practica Contextos
+name: Practica Variables
 
 on:
   push:
 
+env:
+  EMPRESA: OpenAI
+
 jobs:
 
-  explorar-contextos:
+  variables:
 
     runs-on: ubuntu-latest
 
+    env:
+      LENGUAJE: GitHub Actions
+
     steps:
 
-      - uses: actions/checkout@v4
+      - name: Variable del Workflow
+        run: echo "Empresa: $EMPRESA"
 
-      - name: Actor
-        run: echo "${{ github.actor }}"
+      - name: Variable del Job
+        run: echo "Lenguaje: $LENGUAJE"
 
-      - name: Repositorio
-        run: echo "${{ github.repository }}"
+      - name: Variable del Step
+        env:
+          MENSAJE: Hola desde el Step
 
-      - name: Rama
-        run: echo "${{ github.ref }}"
+        run: echo "$MENSAJE"
 
-      - name: Commit
-        run: echo "${{ github.sha }}"
+      - name: Contexto GitHub
+        run: echo "Actor: ${{ github.actor }}"
 
-      - name: Workflow
-        run: echo "${{ github.workflow }}"
+      - name: Mezclando Contexto y Variables
+        env:
+          USUARIO: ${{ github.actor }}
 
-      - name: Job
-        run: echo "${{ github.job }}"
-
-      - name: Run ID
-        run: echo "${{ github.run_id }}"
-
-      - name: Run Number
-        run: echo "${{ github.run_number }}"
-
-      - name: Sistema Operativo
-        run: echo "${{ runner.os }}"
+        run: echo "Hola $USUARIO"
