@@ -1,30 +1,25 @@
-name: Practica Condiciones
+name: Practica Matrix
 
 on:
   push:
 
 jobs:
 
-  condiciones:
+  prueba-matrix:
 
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+
+    runs-on: ${{ matrix.os }}
 
     steps:
 
-      - name: Siempre se ejecuta
-        run: |
-          echo "Paso 1"
+      - name: Mostrar sistema solicitado
+        run: echo "Matrix pidió: ${{ matrix.os }}"
 
-      - name: Solo en main
-        if: github.ref == 'refs/heads/main'
-        run: |
-          echo "Estoy en la rama main"
-
-      - name: Solo si NO es main
-        if: github.ref != 'refs/heads/main'
-        run: |
-          echo "No estoy en main"
-
-      - name: Mostrar rama
-        run: |
-          echo "${{ github.ref }}"
+      - name: Mostrar sistema real
+        run: echo "Runner está usando: ${{ runner.os }}"
