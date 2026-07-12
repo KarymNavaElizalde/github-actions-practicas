@@ -1,39 +1,30 @@
-name: Practica Variables
+name: Practica Condiciones
 
 on:
   push:
 
-env:
-  EMPRESA: OpenAI
-
 jobs:
 
-  variables:
+  condiciones:
 
     runs-on: ubuntu-latest
 
-    env:
-      LENGUAJE: GitHub Actions
-
     steps:
 
-      - name: Variable del Workflow
-        run: 'echo "Empresa: $EMPRESA"'
+      - name: Siempre se ejecuta
+        run: |
+          echo "Paso 1"
 
-      - name: Variable del Job
-        run: 'echo "Lenguaje: $LENGUAJE"'
+      - name: Solo en main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Estoy en la rama main"
 
-      - name: Variable del Step
-        env:
-          MENSAJE: Hola desde el Step
+      - name: Solo si NO es main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          echo "No estoy en main"
 
-        run: echo "$MENSAJE"
-
-      - name: Contexto GitHub
-        run: 'echo "Actor: ${{ github.actor }}"'
-
-      - name: Mezclando Contexto y Variables
-        env:
-          USUARIO: ${{ github.actor }}
-
-        run: echo "Hola $USUARIO"
+      - name: Mostrar rama
+        run: |
+          echo "${{ github.ref }}"
