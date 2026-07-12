@@ -19,7 +19,7 @@ jobs:
     steps:
 
       - name: Mostrar sistema solicitado
-        run: echo "Matrix pidió: ${{ matrix.os }}"
+        run: 'echo "Matrix pidió: ${{ matrix.os }}"'
 
       - name: Mostrar sistema real
-        run: echo "Runner está usando: ${{ runner.os }}"
+        run: 'echo "Runner está usando: ${{ runner.os }}"'
