@@ -11,9 +11,7 @@ jobs:
 
     steps:
 
-      - name: Leer Secret
+      - name: Mostrar Secret
         run: |
-          echo "$MENSAJE"
+          echo "${{ secrets.MENSAJE_SECRETO }}"
 
-        env:
-          MENSAJE: ${{ secrets.MENSAJE_SECRETO }}
