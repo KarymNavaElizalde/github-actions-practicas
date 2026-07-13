@@ -12,7 +12,12 @@ jobs:
         os:
           - ubuntu-latest
           - windows-latest
-          - macos-latest
+          - macos-latest 
+
+        node:
+          - 18
+          - 20
+          - 22
 
     runs-on: ${{ matrix.os }}
 
